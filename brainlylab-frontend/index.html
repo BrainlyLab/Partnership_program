@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrainlyHQ Partnership Program</title>
+    <link rel="icon" type="image/png" href="public/brainlylab-logo.png" />
+    <style>
+      :root {
+        --green: #96ee60;
+        --teal: #00ccc5;
+        --purple: #7922dc;
+        --lavender: #bf8dff;
+        --black: #000000;
+        --dark: #111111;
+        --white: #ffffff;
+        --off-white: #f8f8f8;
+        --muted: #666666;
+        --light-gray: #e8e8e8;
+        --radius-sm: 20px;
+        --radius-lg: 35px;
+        --nav-h: 72px;
+        --font: Arial, Helvetica, sans-serif;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        min-height: 100vh;
+        overflow-x: hidden;
+        background: var(--white);
+        color: var(--black);
+        font-family: var(--font);
+        line-height: 1.5;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background: url("public/brainlylab-watermark.png") repeat center center;
+        background-size: 1400px auto;
+        opacity: 0.12;
+        pointer-events: none;
+      }
+      a { color: inherit; text-decoration: none; }
+      img { display: block; max-width: 100%; }
+
+      .site-nav {
+        min-height: var(--nav-h);
+        background: var(--green);
+        padding: 12px 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 10;
+        border-bottom: 3px solid rgba(0,0,0,0.08);
+      }
+      .nav-logo img { height: 48px; width: auto; }
+      .nav-links { display: flex; align-items: center; gap: 28px; }
+      .nav-links a {
+        font-size: 14px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: rgba(0,0,0,0.55);
+      }
+      .nav-links a:hover { color: var(--black); }
+      .nav-cta {
+        font-size: 13px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        padding: 10px 24px;
+        background: var(--black);
+        color: var(--green);
+        border-radius: var(--radius-sm);
+      }
+      .site-wrap { position: relative; z-index: 1; padding-top: var(--nav-h); }
+
+      .hero {
+        padding: 80px 60px 60px;
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        min-height: 80vh;
+        background: linear-gradient(180deg, var(--green) 0%, var(--white) 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(0,204,197,0.16) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .hero-text { flex: 1; position: relative; z-index: 1; }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--black);
+        color: var(--green);
+        font-size: 11px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 8px 18px;
+        border-radius: var(--radius-sm);
+        margin-bottom: 24px;
+      }
+      .dot {
+        width: 6px;
+        height: 6px;
+        background: var(--green);
+        border-radius: 50%;
+      }
+      h1 {
+        font-size: clamp(46px, 7vw, 84px);
+        font-weight: 900;
+        text-transform: uppercase;
+        line-height: 0.98;
+        margin-bottom: 20px;
+      }
+      .accent { color: var(--purple); }
+      .hero p {
+        max-width: 620px;
+        color: var(--muted);
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.5;
+        margin-bottom: 36px;
+      }
+      .actions { display: flex; gap: 16px; flex-wrap: wrap; }
+      .btn-primary,
+      .btn-secondary {
+        display: inline-block;
+        padding: 16px 32px;
+        border-radius: var(--radius-sm);
+        font-size: 15px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+      .btn-primary { background: var(--black); color: var(--green); }
+      .btn-secondary { border: 2px solid var(--black); color: var(--black); }
+      .hero-visual { flex: 0 0 420px; position: relative; z-index: 1; }
+      .hero-card {
+        width: 100%;
+        padding: 40px;
+        text-align: center;
+        background: var(--white);
+        border: 2px solid var(--black);
+        border-radius: var(--radius-lg);
+        box-shadow: 12px 12px 0 var(--black);
+      }
+      .card-kicker {
+        color: var(--purple);
+        font-size: 11px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+      }
+      .card-logo {
+        font-size: 30px;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .card-slogan {
+        color: var(--muted);
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+      .stats { display: flex; gap: 12px; }
+      .stat {
+        flex: 1;
+        background: var(--green);
+        border-radius: var(--radius-sm);
+        padding: 12px;
+        text-align: center;
+      }
+      .stat-num { font-size: 22px; font-weight: 900; line-height: 1; }
+      .stat-label {
+        margin-top: 5px;
+        color: rgba(0,0,0,0.5);
+        font-size: 9px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+      }
+
+      section { padding: 80px 60px; }
+      .section-label {
+        margin-bottom: 8px;
+        color: var(--purple);
+        font-size: 11px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+      .section-title {
+        max-width: 920px;
+        margin-bottom: 40px;
+        font-size: clamp(32px, 4vw, 52px);
+        font-weight: 900;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .intro {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 48px;
+        align-items: center;
+        background: var(--white);
+      }
+      .intro p {
+        max-width: 720px;
+        color: var(--muted);
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.6;
+      }
+      .mission-grid { display: grid; gap: 18px; }
+      .mission-grid div {
+        padding: 28px;
+        background: var(--off-white);
+        border: 2px solid var(--light-gray);
+        border-radius: var(--radius-lg);
+      }
+      .mission-grid span {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--purple);
+        font-size: 11px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .mission-grid strong { display: block; font-size: 20px; line-height: 1.35; }
+
+      .categories { background: var(--off-white); }
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+      }
+      .category,
+      .offer {
+        padding: 20px 16px;
+        background: var(--white);
+        border: 2px solid var(--black);
+        border-radius: var(--radius-sm);
+        box-shadow: 5px 5px 0 rgba(0,0,0,0.16);
+        text-align: center;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .services {
+        background: var(--green);
+        position: relative;
+        overflow: hidden;
+      }
+      .services::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("public/brainlylab-watermark.png") repeat center;
+        background-size: 800px auto;
+        opacity: 0.06;
+      }
+      .services-inner {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .services p {
+        max-width: 560px;
+        color: rgba(0,0,0,0.58);
+        font-size: 17px;
+        font-weight: 700;
+      }
+      .offer-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      .client-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        align-items: start;
+      }
+      .client-card {
+        padding: 34px 28px;
+        background: var(--white);
+        border: 2px solid var(--light-gray);
+        border-radius: var(--radius-lg);
+      }
+      .client-icon {
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        border-radius: var(--radius-sm);
+        font-size: 20px;
+        font-weight: 900;
+      }
+      .green { background: var(--green); color: var(--black); }
+      .teal { background: var(--teal); color: var(--white); }
+      .lavender { background: var(--lavender); color: var(--white); }
+      .client-card h3 {
+        margin-bottom: 18px;
+        font-size: 20px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+      .list-block { margin-top: 18px; }
+      .list-block h4 {
+        margin-bottom: 9px;
+        color: var(--purple);
+        font-size: 11px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 1.6px;
+      }
+      ul { display: grid; gap: 8px; list-style: none; }
+      li {
+        position: relative;
+        padding-left: 18px;
+        color: var(--dark);
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+      li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 7px;
+        height: 7px;
+        background: var(--green);
+        border-radius: 50%;
+      }
+
+      .slogan {
+        padding: 56px 60px;
+        background: var(--black);
+        text-align: center;
+      }
+      .slogan div {
+        color: var(--green);
+        font-size: clamp(28px, 4vw, 52px);
+        font-weight: 900;
+        text-transform: uppercase;
+        line-height: 1.1;
+      }
+      .slogan span { color: var(--white); }
+      .slogan-actions {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 26px;
+      }
+      .slogan-btn {
+        display: inline-block;
+        padding: 14px 28px;
+        border-radius: var(--radius-sm);
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
+      }
+      .slogan-btn-contact {
+        background: var(--green);
+        color: var(--black);
+      }
+      .slogan-btn-join {
+        background: transparent;
+        color: var(--green);
+        border: 2px solid var(--green);
+      }
+      .slogan-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(150,238,96,0.2);
+      }
+      .slogan-btn-join:hover {
+        background: var(--green);
+        color: var(--black);
+      }
+      .slogan p {
+        max-width: 760px;
+        margin: 16px auto 0;
+        color: rgba(255,255,255,0.68);
+        font-size: 16px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+
+      .site-footer {
+        background: var(--green);
+        padding: 40px 60px 24px;
+      }
+      .ft-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        margin-bottom: 32px;
+        padding-bottom: 24px;
+        border-bottom: 2px solid rgba(0,0,0,0.1);
+      }
+      .ft-brand img { height: 40px; margin-bottom: 12px; }
+      .ft-slogan { color: rgba(0,0,0,0.55); font-size: 14px; font-weight: 800; }
+      .ft-cols { display: flex; gap: 48px; }
+      .ft-col { display: flex; flex-direction: column; }
+      .ft-col-title {
+        margin-bottom: 12px;
+        font-size: 11px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .ft-col a {
+        margin-bottom: 8px;
+        color: rgba(0,0,0,0.55);
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .ft-bottom { color: rgba(0,0,0,0.45); font-size: 11px; font-weight: 800; }
+
+      @media (max-width: 1100px) {
+        .site-nav, section, .slogan, .site-footer { padding-left: 24px; padding-right: 24px; }
+        .site-nav { flex-wrap: wrap; }
+        .hero { flex-direction: column; align-items: flex-start; min-height: auto; padding-top: 48px; }
+        .hero-visual { width: 100%; flex: none; }
+        .intro, .services-inner { grid-template-columns: 1fr; }
+        .client-grid { grid-template-columns: 1fr; }
+        .category-grid { grid-template-columns: repeat(2, 1fr); }
+        .ft-top { flex-direction: column; }
+        .ft-cols { flex-direction: column; gap: 24px; }
+      }
+
+      @media (max-width: 620px) {
+        .nav-links { width: 100%; flex-wrap: wrap; gap: 14px; }
+        .stats, .offer-grid, .category-grid { grid-template-columns: 1fr; display: grid; }
+        .hero-card { padding: 28px; }
+        h1 { font-size: 40px; }
+        .hero p { font-size: 17px; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <a href="#top" class="nav-logo"><img src="public/brainlylab-logo.png" alt="BrainlyLab" /></a>
+      <div class="nav-links">
+        <a href="#top">Partnership HQ</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#requirements">Requirements</a>
+      </div>
+      <a href="#contact" class="nav-cta">Apply Now</a>
+    </nav>
+
+    <main id="top" class="site-wrap">
+      <section class="hero">
+        <div class="hero-text">
+          <h1>Brainly HQ<br /><span class="accent">Partnership HQ</span><br />Website</h1>
+          <p>This website helps people connect, work together, and grow. It gives support, ideas, and opportunities for better partnerships.</p>
+          <div class="actions">
+            <a href="#requirements" class="btn-primary">View Requirements</a>
+            <a href="#services" class="btn-secondary">View Services</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="card-kicker">Brainly Core</div>
+            <div class="card-logo">Partnership HQ</div>
+            <div class="card-slogan">People connect, work together, and grow.</div>
+            <div class="stats">
+              <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Website</div></div>
+              <div class="stat"><div class="stat-num">3</div><div class="stat-label">Clients</div></div>
+              <div class="stat"><div class="stat-num">1.0</div><div class="stat-label">Version</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro" id="about">
+        <div>
+          <div class="section-label">About Us</div>
+          <h2 class="section-title">Partnership HQ is made to help people build strong connections and teamwork.</h2>
+          <p>The goal is to create a friendly and helpful community where everyone can share ideas and succeed together.</p>
+        </div>
+        <div class="mission-grid">
+          <div><span>Mission</span><strong>Help people build better partnerships through teamwork, trust, and communication.</strong></div>
+          <div><span>Vision</span><strong>Create a community where people help each other grow and succeed together.</strong></div>
+        </div>
+      </section>
+
+      <section class="categories">
+        <div class="section-label">Categories on the Website</div>
+        <h2 class="section-title">Projects, partners, services, news and updates, contact.</h2>
+        <div class="category-grid">
+          <div class="category">Projects</div>
+          <div class="category">Partners</div>
+          <div class="category">Services</div>
+          <div class="category">News and Updates</div>
+          <div class="category">Contact</div>
+        </div>
+      </section>
+
+      <section class="services" id="services">
+        <div class="services-inner">
+          <div>
+            <div class="section-label">What We Offer</div>
+            <h2 class="section-title">Support for teamwork, project planning, communication, and partnership building.</h2>
+            <p>Partnership HQ also provides updates and opportunities that can help people improve their projects and ideas.</p>
+          </div>
+          <div class="offer-grid">
+            <div class="offer">Support for teamwork</div>
+            <div class="offer">Project planning</div>
+            <div class="offer">Communication</div>
+            <div class="offer">Partnership building</div>
+            <div class="offer">Updates</div>
+            <div class="offer">Opportunities</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="requirements">
+        <div class="section-label">Clients</div>
+        <h2 class="section-title">The program distinguishes 3 categories of clients.</h2>
+        <div class="client-grid">
+          <article class="client-card">
+            <div class="client-icon green">IC</div>
+            <h3>Individual Clients</h3>
+            <div class="list-block"><h4>Requirements that must be met</h4><ul>
+              <li>Minimum of 700 messages sent per month</li>
+              <li>Minimum of 20 active days per month</li>
+              <li>Minimum of 30 days on the server</li>
+              <li>Minimum of 5,000 BrainlyCoins</li>
+              <li>No warns on the server or profile</li>
+              <li>Two-factor authentication enabled</li>
+              <li>Positive behavior towards the community</li>
+            </ul></div>
+            <div class="list-block"><h4>Additionally, at least one must be met</h4><ul>
+              <li>Invite at least 5 users to the BrainlyHQ server</li>
+              <li>Reach at least level 10 on the BrainlyHQ server</li>
+              <li>Provide at least 50 answers on Brainly</li>
+            </ul></div>
+            <div class="list-block"><h4>What we expect in return</h4><ul>
+              <li>Place an active invite link to the BrainlyHQ server in your Discord profile bio</li>
+              <li>Actively participate in events organized on the BrainlyHQ server</li>
+              <li>Stay regularly active on the BrainlyHQ server through public messages</li>
+            </ul></div>
+            <div class="list-block"><h4>The partnership may be terminated if</h4><ul>
+              <li>The user acts against the interests of the community</li>
+              <li>The BrainlyHQ server rules are repeatedly violated</li>
+              <li>The user remains inactive for at least 30 days</li>
+            </ul></div>
+          </article>
+
+          <article class="client-card">
+            <div class="client-icon teal">OU</div>
+            <h3>Market / Organization / University</h3>
+            <div class="list-block"><h4>Requirements that must be met</h4><ul>
+              <li>At least 300 members on your Discord server or at least 500 followers on social media</li>
+              <li>Social media profiles must be publicly accessible</li>
+              <li>Regular activity on social media</li>
+              <li>No NSFW, extremist, or otherwise harmful content on social media</li>
+              <li>Last social media activity within the past 30 days</li>
+            </ul></div>
+            <div class="list-block"><h4>What we expect in return</h4><ul>
+              <li>Display partnership information on all social media accounts and websites</li>
+              <li>Publish at least 2 posts per month about the partnership</li>
+              <li>Maintain active contact with the BrainlyHQ server management</li>
+              <li>Be ready to co-organize events</li>
+              <li>Care for the good reputation of the BrainlyHQ server and its members</li>
+            </ul></div>
+            <div class="list-block"><h4>The partnership may be terminated if</h4><ul>
+              <li>The partner organization becomes inactive</li>
+              <li>The partner organization removes information about the active partnership</li>
+              <li>The organization's activities negatively affect the reputation of the BrainlyHQ community</li>
+              <li>Promotion stops for more than 30 days</li>
+            </ul></div>
+          </article>
+
+          <article class="client-card">
+            <div class="client-icon lavender">CR</div>
+            <h3>Creators and Influencers</h3>
+            <div class="list-block"><h4>Requirements that must be met</h4><ul>
+              <li>At least 1,000 followers/subscribers</li>
+              <li>Average views per piece of content must be at least 100</li>
+              <li>Regular activity on social media</li>
+              <li>No NSFW, extremist, or otherwise harmful content on social media</li>
+              <li>Social media profiles must be publicly accessible</li>
+              <li>Last social media activity within the past 14 days</li>
+            </ul></div>
+            <div class="list-block"><h4>What we expect in return</h4><ul>
+              <li>Display partnership information on all social media accounts and websites</li>
+              <li>Publish at least 2 posts/reels/mentions per month</li>
+              <li>Maintain active contact with the BrainlyHQ server management</li>
+              <li>Be ready to co-organize events</li>
+              <li>Care for the good reputation of the BrainlyHQ server and its members</li>
+              <li>Maintain a professional approach to promoting the BrainlyHQ server and community</li>
+            </ul></div>
+            <div class="list-block"><h4>The partnership may be terminated if</h4><ul>
+              <li>The creator stops actively promoting the BrainlyHQ server and community</li>
+              <li>The creator's activity becomes irregular</li>
+              <li>The creator removes information about the active partnership</li>
+              <li>The creator's current activities negatively affect the reputation of the BrainlyHQ community</li>
+            </ul></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="slogan" id="contact">
+        <div><span>Thank You!</span> Brainly Core</div>
+        <div class="slogan-actions">
+          <a class="slogan-btn slogan-btn-contact" href="https://discord.com/users/743056866593996832" target="_blank" rel="noopener noreferrer">Contact</a>
+          <a class="slogan-btn slogan-btn-join" href="https://discord.gg/ApmsnwYC" target="_blank" rel="noopener noreferrer">Join BrainlyHQ</a>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="ft-top">
+          <div class="ft-brand">
+            <img src="public/brainlylab-logo.png" alt="BrainlyLab" />
+            <div class="ft-slogan">Brainly Core - Partnership HQ Website 2026.</div>
+          </div>
+          <div class="ft-cols">
+            <div class="ft-col">
+              <div class="ft-col-title">Website</div>
+              <a href="#top">Projects</a>
+              <a href="#top">Partners</a>
+              <a href="#services">Services</a>
+              <a href="#top">News and Updates</a>
+            </div>
+            <div class="ft-col">
+              <div class="ft-col-title">Clients</div>
+              <a href="#requirements">Individual Clients</a>
+              <a href="#requirements">Market / Organization / University</a>
+              <a href="#requirements">Creators and Influencers</a>
+            </div>
+            <div class="ft-col">
+              <div class="ft-col-title">About</div>
+              <a href="#about">Partnership HQ</a>
+              <a href="#requirements">Requirements</a>
+              <a href="#contact">Contact</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
