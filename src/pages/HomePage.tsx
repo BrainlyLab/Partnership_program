@@ -121,9 +121,7 @@ export default function HomePage() {
         <div className="hp-hero-text fade-up">
           <h1 className="hp-title">
             Brainly HQ<br />
-            <span className="hp-accent">Partnership HQ</span>
-            <br />
-            Website
+            <span className="hp-accent">Partnership Program</span>
           </h1>
           <p className="hp-subtitle">
             This website helps people connect, work together, and grow. It gives
