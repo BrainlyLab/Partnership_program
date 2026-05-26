@@ -82,14 +82,6 @@ const partnerTracks = [
   },
 ];
 
-const websiteCategories = [
-  "Projects",
-  "Partners",
-  "Services",
-  "News and Updates",
-  "Contact",
-];
-
 const offers = [
   "Support for teamwork",
   "Project planning",
@@ -176,16 +168,6 @@ export default function HomePage() {
             <span>Vision</span>
             <strong>Create a community where people help each other grow and succeed together.</strong>
           </div>
-        </div>
-      </section>
-
-      <section className="hp-categories">
-        <div className="hp-sec-label">Categories on the Website</div>
-        <h2 className="hp-sec-title">Projects, partners, services, news and updates, contact.</h2>
-        <div className="hp-category-grid">
-          {websiteCategories.map((category) => (
-            <div className="hp-category" key={category}>{category}</div>
-          ))}
         </div>
       </section>
 
@@ -310,7 +292,7 @@ const css = `
   .hp-stat-num { font-weight: 900; font-size: 22px; line-height: 1; }
   .hp-stat-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: rgba(0,0,0,0.5); margin-top: 5px; }
 
-  .hp-intro, .hp-categories, .hp-features { padding: 80px 60px; }
+  .hp-intro, .hp-features { padding: 80px 60px; }
   .hp-intro { background: var(--white); display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
   .hp-intro-copy p {
     color: var(--muted); font-size: 18px; font-weight: 600; line-height: 1.6; max-width: 720px;
@@ -325,14 +307,6 @@ const css = `
     text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;
   }
   .hp-mission-grid strong { font-size: 20px; line-height: 1.35; display: block; }
-
-  .hp-categories { background: var(--off-white); }
-  .hp-category-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
-  .hp-category {
-    background: var(--white); border: 2px solid var(--black); border-radius: var(--radius-sm);
-    padding: 20px 16px; text-align: center; font-weight: 900; text-transform: uppercase;
-    box-shadow: 5px 5px 0 rgba(0,0,0,0.16);
-  }
 
   .hp-sec-label { font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--purple); margin-bottom: 8px; }
   .hp-sec-title { font-weight: 900; font-size: clamp(32px, 4vw, 52px); text-transform: uppercase; letter-spacing: 0; margin-bottom: 40px; line-height: 1; max-width: 920px; }
@@ -384,16 +358,15 @@ const css = `
   .hp-slogan p { max-width: 760px; margin: 16px auto 0; color: rgba(255,255,255,0.68); font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 1.5px; }
 
   @media (max-width: 1100px) {
-    .hp-hero, .hp-intro, .hp-categories, .hp-features, .hp-promo, .hp-slogan { padding-left: 24px; padding-right: 24px; }
+    .hp-hero, .hp-intro, .hp-features, .hp-promo, .hp-slogan { padding-left: 24px; padding-right: 24px; }
     .hp-hero { flex-direction: column; min-height: auto; padding-top: 48px; align-items: flex-start; }
     .hp-hero-visual { width: 100%; flex: none; }
     .hp-intro, .hp-promo-inner { grid-template-columns: 1fr; }
     .hp-feat-grid { grid-template-columns: 1fr; }
-    .hp-category-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 620px) {
-    .hp-stats, .hp-offer-grid, .hp-category-grid { grid-template-columns: 1fr; display: grid; }
+    .hp-stats, .hp-offer-grid { grid-template-columns: 1fr; display: grid; }
     .hp-card { padding: 28px; }
     .hp-title { font-size: 40px; }
     .hp-subtitle { font-size: 17px; }

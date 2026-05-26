@@ -248,13 +248,6 @@
       }
       .mission-grid strong { display: block; font-size: 20px; line-height: 1.35; }
 
-      .categories { background: var(--off-white); }
-      .category-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 14px;
-      }
-      .category,
       .offer {
         padding: 20px 16px;
         background: var(--white);
@@ -456,14 +449,13 @@
         .hero-visual { width: 100%; flex: none; }
         .intro, .services-inner { grid-template-columns: 1fr; }
         .client-grid { grid-template-columns: 1fr; }
-        .category-grid { grid-template-columns: repeat(2, 1fr); }
         .ft-top { flex-direction: column; }
         .ft-cols { flex-direction: column; gap: 24px; }
       }
 
       @media (max-width: 620px) {
         .nav-links { width: 100%; flex-wrap: wrap; gap: 14px; }
-        .stats, .offer-grid, .category-grid { grid-template-columns: 1fr; display: grid; }
+        .stats, .offer-grid { grid-template-columns: 1fr; display: grid; }
         .hero-card { padding: 28px; }
         h1 { font-size: 40px; }
         .hero p { font-size: 17px; }
@@ -516,18 +508,6 @@
         <div class="mission-grid">
           <div><span>Mission</span><strong>Help people build better partnerships through teamwork, trust, and communication.</strong></div>
           <div><span>Vision</span><strong>Create a community where people help each other grow and succeed together.</strong></div>
-        </div>
-      </section>
-
-      <section class="categories">
-        <div class="section-label">Categories on the Website</div>
-        <h2 class="section-title">Projects, partners, services, news and updates, contact.</h2>
-        <div class="category-grid">
-          <div class="category">Projects</div>
-          <div class="category">Partners</div>
-          <div class="category">Services</div>
-          <div class="category">News and Updates</div>
-          <div class="category">Contact</div>
         </div>
       </section>
 
