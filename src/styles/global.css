@@ -90,9 +90,16 @@ input { font-family: var(--font); }
 
 /* Responsive */
 @media (max-width: 900px) {
-  .site-nav { padding: 12px 24px; }
+  .site-wrap { padding-top: 0; }
+  .site-nav {
+    position: static;
+    flex-wrap: wrap;
+    padding: 12px 24px;
+  }
   .site-nav .nav-links {
-    position: fixed; top: var(--nav-h); left: 0; right: 0;
+    position: static;
+    flex: 0 0 100%;
+    order: 4;
     background: var(--green); flex-direction: column; gap: 0;
     max-height: 0; overflow: hidden; transition: max-height 0.35s ease;
   }
