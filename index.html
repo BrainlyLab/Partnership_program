@@ -54,8 +54,7 @@
         align-items: center;
         justify-content: space-between;
         gap: 28px;
-        position: fixed;
-        inset: 0 0 auto;
+        position: relative;
         z-index: 10;
         border-bottom: 3px solid rgba(0,0,0,0.08);
       }
@@ -79,7 +78,7 @@
         color: var(--green);
         border-radius: var(--radius-sm);
       }
-      .site-wrap { position: relative; z-index: 1; padding-top: var(--nav-h); }
+      .site-wrap { position: relative; z-index: 1; }
 
       .hero {
         padding: 80px 60px 60px;
@@ -444,8 +443,7 @@
 
       @media (max-width: 1100px) {
         .site-nav, section, .slogan, .site-footer { padding-left: 24px; padding-right: 24px; }
-        .site-nav { position: relative; inset: auto; flex-wrap: wrap; }
-        .site-wrap { padding-top: 0; }
+        .site-nav { flex-wrap: wrap; }
         .hero { flex-direction: column; align-items: flex-start; min-height: auto; padding-top: 48px; }
         .hero-visual { width: 100%; flex: none; }
         .intro, .services-inner { grid-template-columns: 1fr; }
